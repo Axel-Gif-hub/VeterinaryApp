@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "333042685138",
+    "project_id": "veterinaryapp-b5eb9",
+    "storage_bucket": "veterinaryapp-b5eb9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333042685138:android:da274f7bf481e7be3e890b",
+        "android_client_info": {
+          "package_name": "com.example.veterinaryapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9NY3Ssog5k7uH8cHTLgdNzmBVd5OA7vE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
