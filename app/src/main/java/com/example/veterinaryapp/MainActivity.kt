@@ -1,101 +1,67 @@
-package com.stomas.veterinarioapp
+package com.example.myapplication
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import org.eclipse.paho.android.service.MqttAndroidClient
-import org.eclipse.paho.client.mqttv3.MqttClient
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions
-import org.eclipse.paho.client.mqttv3.MqttException
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-    private var citasRef: DatabaseReference? = null
-    private var mqttClient: MqttAndroidClient? = null
+    private lateinit var dbHelper: DatabaseHelper
 
-    protected fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.android.tools.r8.graph.T.R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
-        val database: FirebaseDatabase = FirebaseDatabase.getInstance()
-        citasRef = database.getReference("citas")
+        dbHelper = DatabaseHelper(this)
 
-        val broker = "tcp://broker.hivemq.com:1883" // Cambia si usas otro bróker
-        val clientId: String = MqttClient.generateClientId()
-        mqttClient = MqttAndroidClient(getApplicationContext(), broker, clientId)
+        // Referencias a vistas
+        val ownerName = findViewById<EditText>(R.id.editOwnerName)
+        val ownerContact = findViewById<EditText>(R.id.editOwnerContact)
+        val petName = findViewById<EditText>(R.id.editPetName)
+        val petType = findViewById<EditText>(R.id.editPetType)
+        val petAge = findViewById<EditText>(R.id.editPetAge)
+        val btnSave = findViewById<Button>(R.id.btnSaveData)
 
-        try {
-            val options: MqttConnectOptions = MqttConnectOptions()
-            options.setCleanSession(true)
-            mqttClient.connect(options)
-        } catch (e: MqttException) {
-            e.printStackTrace()
-        }
+        // Acción del botón
+        btnSave.setOnClickListener {
+            val ownerId = dbHelper.addOwner(
+                ownerName.text.toString(),
+                ownerContact.text.toString()
+            )
+            Toast.makeText(this, "Dueño guardado con ID: $ownerId", Toast.LENGTH_SHORT).show()
 
-        val etCliente: EditText = findViewById(com.android.tools.r8.graph.T.R.id.et_cliente)
-        val etMascota: EditText = findViewById(com.android.tools.r8.graph.T.R.id.et_mascota)
-        val etDetalle: EditText = findViewById(com.android.tools.r8.graph.T.R.id.et_detalle)
-        val btnGuardar: Button = findViewById(com.android.tools.r8.graph.T.R.id.btn_guardar)
-        val btnEnviarMQTT: Button = findViewById(com.android.tools.r8.graph.T.R.id.btn_enviar_mqtt)
+            class MainActivity : AppCompatActivity() {
+                private lateinit var imageViewRandomAnimal: ImageView
+                private lateinit var btnRandomAnimal: Button
 
-        btnGuardar.setOnClickListener { view ->
-            val cliente: String = etCliente.getText().toString()
-            val mascota: String = etMascota.getText().toString()
-            val detalle: String = etDetalle.getText().toString()
+                // Array de imágenes locales en drawable
+                private val animalImages = arrayOf(
+                    R.drawable.animal1,
+                    R.drawable.animal2,
+                    R.drawable.animal3,
+                    R.drawable.animal4
+                )
 
-            if (cliente.isEmpty() || mascota.isEmpty() || detalle.isEmpty()) {
-                Toast.makeText(
-                    this@MainActivity,
-                    "Por favor, completa todos los campos",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
-            }
+                override fun onCreate(savedInstanceState: Bundle?) {
+                    super.onCreate(savedInstanceState)
+                    setContentView(R.layout.activity_main)
 
-            val cita: java.util.HashMap<String, String> =
-                java.util.HashMap<String, String>()
-            cita.put("cliente", cliente)
-            cita.put("mascota", mascota)
-            cita.put("detalle", detalle)
-            citasRef.push().setValue(cita).addOnCompleteListener { task ->
-                if (task.isSuccessful()) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Datos guardados en Firebase",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Error al guardar datos",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    imageViewRandomAnimal = findViewById(R.id.imageViewRandomAnimal)
+                    btnRandomAnimal = findViewById(R.id.btnRandomAnimal)
+
+                    // Cargar una imagen inicial aleatoria
+                    loadRandomImage()
+
+                    btnRandomAnimal.setOnClickListener {
+                        loadRandomImage()
+                    }
                 }
-            }
-        }
 
-
-        btnEnviarMQTT.setOnClickListener { view ->
-            val mensaje =
-                ("Nueva cita: Cliente - " + etCliente.getText().toString()).toString() +
-                        ", Mascota - " + etMascota.getText().toString()
-            try {
-                mqttClient.publish("veterinario/citas", mensaje.toByteArray(), 0, false)
-                Toast.makeText(
-                    this@MainActivity,
-                    "Mensaje enviado al bróker MQTT",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } catch (e: MqttException) {
-                e.printStackTrace()
-                Toast.makeText(
-                    this@MainActivity,
-                    "Error al enviar mensaje MQTT",
-                    Toast.LENGTH_SHORT
-                ).show()
+                private fun loadRandomImage() {
+                    val randomIndex = Random.nextInt(animalImages.size)
+                    imageViewRandomAnimal.setImageResource(animalImages[randomIndex])
+                }
             }
         }
     }

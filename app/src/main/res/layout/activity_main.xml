@@ -1,37 +1,74 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/et_cliente"
-        android:hint="Nombre del cliente"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <EditText
-        android:id="@+id/et_mascota"
-        android:hint="Nombre de la mascota"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <!-- Dueño -->
+        <EditText
+            android:id="@+id/editOwnerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre del dueño" />
 
-    <EditText
-        android:id="@+id/et_detalle"
-        android:hint="Detalles de la cita"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/editOwnerContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contacto del dueño" />
 
-    <Button
-        android:id="@+id/btn_guardar"
-        android:text="Guardar en Firebase"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <!-- Mascota -->
+        <EditText
+            android:id="@+id/editPetName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la mascota" />
 
-    <Button
-        android:id="@+id/btn_enviar_mqtt"
-        android:text="Enviar MQTT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        <EditText
+            android:id="@+id/editPetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tipo de mascota (Perro, Gato, etc.)" />
+
+        <EditText
+            android:id="@+id/editPetAge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Edad de la mascota" />
+
+        <!-- Botón para guardar datos -->
+        <Button
+            android:id="@+id/btnSaveData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guardar Datos" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imageViewPet"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+
+            <Button
+                android:id="@+id/btnSelectImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seleccionar Foto" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
