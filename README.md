@@ -1,35 +1,23 @@
 VeterinarioApp - Gestión de Mascotas
 
-Funcionalidades
-Registrar animales: Puedes agregar información de los animales, como nombre, especie, raza y fecha de nacimiento.
-Ver animales registrados: La aplicación muestra una lista con todos los animales registrados, permitiendo su consulta y modificación.
-Integración con Firebase: Los datos de los animales se almacenan en Firebase, permitiendo la sincronización en la nube y el acceso remoto.
-Comunicación en tiempo real con MQTT: La app puede recibir datos de dispositivos IoT, como sensores de temperatura o presión, a través de MQTT.
-Animales registrados. Puedes agregar, editar o eliminar animales de la base de datos de FireBase
+Se le agregaron los siguientes nuevos cambios 
 
 
-Agregar Animales
-Para agregar un nuevo animal, la app presenta un formulario donde puedes ingresar detalles como nombre, especie, y fecha de nacimiento.
+Una clase de registro donde se agregara una fecha y hora al agregar una mascota
+![image](https://github.com/user-attachments/assets/072b7c06-61d1-4f55-b1c0-bea5c077f71d)
 
+Tambien una clase donde se puede registrar el dueño de la mascota
+![image](https://github.com/user-attachments/assets/a4f25611-7eab-4a33-beff-54ba43b21320)
 
-Integración con Firebase
-Los datos de los animales se almacenan en Firebase, lo que permite tener una base de datos en la nube que se sincroniza en tiempo real con la app.
+Modifique el main activity para poder poner una galeria de imagenes a las mascotas con el fin de tener un registro a la hora de buscar los animales
+![image](https://github.com/user-attachments/assets/c256b685-0444-4f0b-950f-3b5a4e7a02ce)
 
-Comunicación en Tiempo Real
-La app utiliza MQTT para recibir datos de dispositivos IoT en la clínica veterinaria, como sensores que monitorean el ambiente de las mascotas.
+Tambien se volvio a agregar el SQlite al proyecto este se encuentra igualmente registrado en las dependencias (graddles)
 
-Capturas:
-Conexion FireBase
-![image](https://github.com/user-attachments/assets/1d4f4116-c954-4371-83a3-9d62fd78e9e2)
+Se le agrego el splashscreen a la hora de iniciar la app
+![image](https://github.com/user-attachments/assets/bce888d7-24ce-4ecf-be19-399b6249827a)
 
-Interfaz de la app
-![image](https://github.com/user-attachments/assets/3a438ae6-c8b1-40af-bc2c-951fadbf959c)
-
-Logica de MQTT
-![image](https://github.com/user-attachments/assets/7f366450-3330-482d-bf19-9a3c2b9ccc46)
-
-Logica de Firebase
-![image](https://github.com/user-attachments/assets/651f1574-46cd-48ee-bae3-cae339822d2b)
-
+Finalmente se le agrego un boton para enviar los datos esto depende puede ser enviado tanto por el SQlite y el Firebase pero esta vez esta conectado al SQlite
+![image](https://github.com/user-attachments/assets/e1e76b2b-190b-4595-aee1-6dea97ee4515)
 
 
