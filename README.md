@@ -20,4 +20,19 @@ Se le agrego el splashscreen a la hora de iniciar la app
 Finalmente se le agrego un boton para enviar los datos esto depende puede ser enviado tanto por el SQlite y el Firebase pero esta vez esta conectado al SQlite
 ![image](https://github.com/user-attachments/assets/e1e76b2b-190b-4595-aee1-6dea97ee4515)
 
+Le agrege widgets en especifico el progressbar
+![image](https://github.com/user-attachments/assets/e2a12054-fda2-4276-86a3-4dfe359d835f)
+
+Se programo utilizando containers y layouts
+
+El firebase y mqtt siguen funcionando solo se le agrego el sqlite
+![image](https://github.com/user-attachments/assets/c030acf9-ec72-46fe-b4a0-7aecfa949763)
+![image](https://github.com/user-attachments/assets/dcd9c469-cb8d-4fa4-9577-283aa1de7f87)
+
+Y aca estan sus logicas tanto de firebase como mqtt
+![image](https://github.com/user-attachments/assets/285dff12-b95c-4bad-b8b8-455022bac4e7)
+![image](https://github.com/user-attachments/assets/37f78553-4ee0-4eda-817a-4f16b9a946b5)
+
+
+
 
